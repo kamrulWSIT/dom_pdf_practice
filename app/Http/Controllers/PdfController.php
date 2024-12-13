@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PdfController extends Controller
 {
     public function generatePdf()
     {
-        $pdf = App::make('dompdf.wrapper');
-        $pdf->loadHTML('<h1>Hello World</h1>');
+        $name = 'Md. Kamrul Hasan';
+        $data = ['name' => $name];
+        $pdf = Pdf::loadView('index', $data);
+
         return $pdf->stream();
-        // return $pdf->download();
     }
 }
