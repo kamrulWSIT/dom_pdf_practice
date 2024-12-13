@@ -11,8 +11,8 @@ class PdfController extends Controller
     {
         $name = 'Md. Kamrul Hasan';
         $data = ['name' => $name];
-        $pdf = Pdf::loadView('index', $data);
+        $pdf = Pdf::loadView('index', $data)->setPaper('a4', 'landscape');
 
-        return $pdf->stream();
+        return $pdf->stream('dom-pdf'. time() . '.pdf');
     }
 }
